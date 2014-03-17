@@ -1,4 +1,4 @@
-Nathans Augmented Reality Demo
+Nathan's Augmented Reality Demo
 ==============================
 An Augmented Reality game that I put together.
 
