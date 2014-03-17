@@ -1,0 +1,55 @@
+AR Game Demo with ARToolkit (by Nathan Marshak)
+
+This is an AR Game demo that uses ARToolkit.
+
+INSTALLATION
+1. Change to the ARToolkit directory and run "make":
+	cd ARToolkit
+	make
+I included the makefile that I used, however you may want
+to run the Configure script again depending on how your
+system is set up. In which case, you would do the following:
+	cd ARToolkit
+	./configure
+	make 
+
+2. In this current directory, run "make". 
+
+3. Set the ARTOOLKIT_CONFIG environment variable. I ran this command in BASH:
+	export ARTOOLKIT_CONFIG="v4l2src device=/dev/video1 use-fixed-fps=false ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink sync=0" 
+
+You'll have to run this command every time you open a new terminal, unless you add the following to the end of your ~/.bashrc file: 
+
+ARTOOLKIT_CONFIG="v4l2src device=/dev/video1 use-fixed-fps=false ! ffmpegcolorspace ! capsfilter caps=video/x-raw-rgb,bpp=24 ! identity name=artoolkit ! fakesink sync=0" 
+
+You may want to change the configuration string depending on your webcam's setup. For instance, if your webcam uses /dev/video0 rather than /dev/video1, then you would want to change "device=" flag in the config string. An easy way to check which device your webcam is on is to 
+install Cheese (on Ubuntu, this is as easy as "sudo apt-get install cheese"). Run cheese by
+typing "cheese" into the command prompt, and go to EDIT > PREFERENCES. The "Device" combobox
+lists all webcams that Cheese can detect, as well as their associated device file. 
+
+See http://artoolkit.sourceforge.net/apidoc/video/ for more information on how to set the config string.  
+
+4. Change to the bin/ directory, and run nathanTest.
+	cd bin
+	./nathanTest
+
+USAGE:
+See the project page for instructions on how the game is played.
+
+CREDITS:
+Dr. CJ Taylor (http://www.cis.upenn.edu/~cjtaylor/) for advising me for this project. 
+
+ARToolkit (http://www.hitl.washington.edu/artoolkit/) does the tracking of the markers. My project uses the ARToolkit examples as starter code.
+
+md2loader loads, renders, and animates the models that I'm using. I got the "hueteotl" character model from md2loader. It can be found here: http://tfc.duke.free.fr/old/models/md2.htm (scroll down to the bottom for the download). 
+
+Gazebo model comes from http://www.md2.sitters-electronics.nl/models.html (see Pack 5). "Licence under GNU and CC_attribution /by". 
+
+I'm pretty sure that the turret model comes from here: http://tastyspleen.net/~quake2/rogue/models/monsters/turret/. Tastyspleen.net is a Quake 2 fan site with publicly available maps / assets, so I think I'm allowed to redistribute this turret model. 
+
+I used the instructions on the following page to get ARToolkit to build under a newer version of Linux: http://tech.enekochan.com/2012/05/21/install-artoolkit-2-72-1-in-ubuntu-11-10-and-12-04/ 
+
+LICENSE:
+ARToolkit is under the GPLv2 (see COPYING.txt).
+md2loader is under the MIT license.
+My code (Should be anything NOT under ARToolkit/ or md2loader/) uses ARToolkit code and md2loader code as starter code. My code is under GPLv2. 

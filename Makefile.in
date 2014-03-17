@@ -1,0 +1,33 @@
+INC_DIR= ../../include
+LIB_DIR= ../../lib
+BIN_DIR= ../../bin
+
+LDFLAG=@LDFLAG@ -L$(LIB_DIR)
+LIBS= -lARgsub -lARvideo -lAR @LIBS@
+CFLAG= @CFLAG@ -I$(INC_DIR)
+
+OBJS = object.o game_functions.o
+HEADDERS = object.h game_functions.h
+
+all: $(BIN_DIR)/nathansTest
+
+$(BIN_DIR)/nathansTest: nathansTest.o $(OBJS)
+	cc -o $(BIN_DIR)/nathansTest nathansTest.o $(OBJS) $(LDFLAG) $(LIBS)
+
+nathansTest.o: nathansTest.c $(HEADDERS)
+	cc -c $(CFLAG) nathansTest.c
+
+object.o: object.c $(HEADDERS)
+	cc -c $(CFLAG) object.c
+
+game_functions.o: game_functions.c $(HEADDERS)
+	cc -c $(CFLAG) game_functions.c
+
+clean:
+	rm -f *.o
+	rm -f $(BIN_DIR)/nathansTest
+
+allclean:
+	rm -f *.o
+	rm -f $(BIN_DIR)/nathansTest
+	rm -f Makefile

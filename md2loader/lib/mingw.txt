@@ -1,0 +1,2 @@
+
+These libraries are for MinGW

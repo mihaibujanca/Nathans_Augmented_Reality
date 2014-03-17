@@ -1,0 +1,30 @@
+CXX = g++
+CXXFLAGS = -ansi -Wall -O2 -Iinclude
+LD = $(CXX) -s
+LIBS = -lopengl32 -lglu32 -lglew32 -lglut32
+LDFLAGS = -Llib $(LIBS)
+
+OBJS = Main.o Md2Model.o Md2Player.o Texture.o Image.o
+
+default: OpenGLMD2Loader.exe
+
+#
+# Binaries
+#
+
+OpenGLMD2Loader.exe: $(OBJS)
+	$(LD) $^ $(LDFLAGS) -o $@
+
+clean:
+	rm -f *.o core.* *~
+
+#
+# Dependencies
+#
+
+Main.o: Main.cpp Md2Model.h TextureManager.h DataManager.h  DataManager.inl
+Md2Model.o: Md2Model.cpp Md2Model.h Texture.h TextureManager.h DataManager.h \
+	    DataManager.inl
+Md2Player.o: Md2Player.cpp Md2Player.h Md2Model.h Texture.h
+Texture.o: Texture.cpp Texture.h Image.h
+Image.o: Image.cpp Image.h

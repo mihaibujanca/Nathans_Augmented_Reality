@@ -1,0 +1,82 @@
+	================================
+	    OpenGL MD2 Model viewer		
+	================================
+
+ Contact
+----------------------------------------
+author: David HENRY
+mail: tfc_duke@club-internet.fr (french/english)
+web site: http://tfc.duke.free.fr
+last release: 13th july 2007
+
+
+ What is it?
+----------------------------------------
+This program is a free model viewer for Quake 2's MD2 file
+format, programmed in C++.
+
+The demo need a path to a directory containing a player
+model (tris.md2, weapon.md2 and associated textures) as
+parameter. You can also pass a *.md2 file as parameter,
+the program will try to load a player in the directory
+in which they are.
+
+For example, the following commands:
+
+   ./OpenGLMD2Loader hueteotl
+   ./OpenGLMD2Loader hueteotl/
+   ./OpenGLMD2Loader hueteotl/tris.md2
+
+are equivalent and will try to read these files:
+
+ * tris.md2                        player's mesh data
+ * weapon.md2                      weapon's mesh data
+ * weapon.<img>                    weapon's texture
+ * all others image files which    player's textures
+   begin neither with "w_", nor
+   terminate with "_i"
+
+<img> can be "pcx" or "tga".
+
+Under Windows, you can drag and drop a directory onto the
+OpenGLMD2Loader.exe, or open a *.md2 file with the
+"open with..." menu.
+
+
+ Notes
+----------------------------------------
+ * this program uses the GLUT library.
+ * support OpenGL commands for rendering.
+ * uses a texture manager which support PCX and TGA image formats.
+ * source code has been compiled under GNU/Linux with GCC 4.1.1
+   and under Windows with MinGW 3.4.2.
+ * source code is licenced under the MIT licence.
+
+
+ Endianess issues
+----------------------------------------
+This demo only works on little endian architectures, since the
+MD2 format is a binary file format stored in little endian order.
+The program doesn't convert file data in big endian, althrough it
+wouldn't be difficult to implement.
+
+
+ Keyboard and mouse input
+----------------------------------------
+Keyboard:
+ * 'A': toggle animation
+ * 'L': toggle OpenGL Lighting
+ * 'R': change rendering mode (direct rendering or using
+    GL commands)
+ * 'S': smooth shaded rendering mode
+ * 'T': toggle texture mapping
+ * 'V': change verbose mode (none, show fps, show all)
+ * 'W': whireframe rendering mode
+ * '+/-': increase/decrease animation frame rate
+ * 'ESC': quit
+
+Mouse:
+ * right button: menu
+ * middle button: zoom
+ * left button: rotation
+ * left button + SHIFT: translation
